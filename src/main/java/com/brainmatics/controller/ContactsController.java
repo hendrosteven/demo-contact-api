@@ -50,7 +50,7 @@ public class ContactsController {
         return repo.findAllContact();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, value = "/search")
     public List<ContactPerson> findByName(@RequestBody SearchForm searchForm) {
         return repo.findByFirstName("%" + searchForm.getSearchKey() + "%");
     }
