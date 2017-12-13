@@ -7,6 +7,7 @@ package com.brainmatics.controller;
 
 import com.brainmatics.entity.ContactPerson;
 import com.brainmatics.repo.ContactRepo;
+import com.brainmatics.utility.SearchForm;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,14 @@ public class ContactsController {
     public ContactPerson getById(@PathVariable("id") String id) {
         return repo.findOne(id);
     }
-    
+
     @RequestMapping(method = RequestMethod.GET)
-    public List<ContactPerson> getAll(){
+    public List<ContactPerson> getAll() {
         return repo.findAllContact();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<ContactPerson> findByName(@RequestBody SearchForm searchForm) {
+        return repo.findByFirstName("%" + searchForm.getSearchKey() + "%");
     }
 }
