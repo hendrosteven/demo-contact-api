@@ -20,7 +20,7 @@ public interface ContactRepo extends PagingAndSortingRepository<ContactPerson, S
     @Query("SELECT c FROM ContactPerson c")
     public List<ContactPerson> findAllContact();
     
-    @Query("SELECT c FROM ContactPerson c WHERE c.fullName LIKE :name")
+    @Query("SELECT c FROM ContactPerson c WHERE LOWERCASE(c.fullName) LIKE LOWERCASE(:name)")
     public List<ContactPerson> findByFirstName(@Param("name") String name);
 
 }
