@@ -32,7 +32,7 @@ public class User implements Serializable, UserDetails {
 	private String fullName;
 	
 	@NotBlank(message="Email can't empty!")
-	@Email(message="Invalid email format")
+	//@Email(message="Invalid email format")
 	@Column(length = 150, nullable = false, unique = true)
 	private String email;
 	
